@@ -18,16 +18,24 @@ const buttonVariants = cva(
           "bg-[var(--md3-secondary-container)] text-[var(--md3-on-secondary-container)] shadow-md3-0 hover:shadow-md3-1 hover:brightness-105 active:shadow-md3-0",
 
         // MD3 Outlined Button - Medium emphasis
+        outline:
+          "border border-[var(--md3-outline)]/40 bg-transparent text-[var(--md3-primary)] hover:bg-[var(--md3-primary)] hover:bg-opacity-8 hover:border-[var(--md3-outline)]/60 active:bg-opacity-12",
+
+        // Legacy alias
         outlined:
-          "border-2 border-[var(--md3-outline)] bg-transparent text-[var(--md3-primary)] hover:bg-[var(--md3-primary)] hover:bg-opacity-8 active:bg-opacity-12",
+          "border border-[var(--md3-outline)]/40 bg-transparent text-[var(--md3-primary)] hover:bg-[var(--md3-primary)] hover:bg-opacity-8 hover:border-[var(--md3-outline)]/60 active:bg-opacity-12",
+
+        // Ghost variant
+        ghost:
+          "bg-transparent text-[var(--md3-on-surface)] hover:bg-[var(--md3-surface-container)]/50 active:bg-[var(--md3-surface-container)]/80",
 
         // MD3 Text Button - Low emphasis
         text:
-          "bg-transparent text-[var(--md3-primary)] shadow-md3-0 hover:bg-[var(--md3-primary)] hover:bg-opacity-8 active:bg-opacity-12",
+          "bg-transparent text-[var(--md3-primary)] shadow-none hover:bg-[var(--md3-primary)] hover:bg-opacity-8 active:bg-opacity-12",
 
         // MD3 Elevated Button - Low emphasis with elevation
         elevated:
-          "bg-[var(--md3-surface)] text-[var(--md3-primary)] shadow-md3-1 hover:shadow-md3-2 hover:bg-[var(--md3-primary)] hover:bg-opacity-8 active:shadow-md3-1 active:bg-opacity-12",
+          "bg-[var(--md3-surface)] text-[var(--md3-primary)] shadow-sm hover:shadow-md hover:bg-[var(--md3-primary)] hover:bg-opacity-8 active:shadow-sm active:bg-opacity-12",
 
         // Additional variants for specific use cases
         destructive:

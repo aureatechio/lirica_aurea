@@ -58,18 +58,18 @@ import {
 const meses = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
 
 const statusColors: Record<string, string> = {
-  "lançamento": "bg-red-500 text-white",
-  "perpétuo": "bg-green-500/20 text-green-400 border border-green-500/30",
-  "lista_espera": "bg-purple-500/20 text-purple-400 border border-purple-500/30",
-  "sessão_aut": "bg-blue-500/20 text-blue-400 border border-blue-500/30",
-  "pre_lancamento": "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30",
+  "lançamento": "bg-[var(--md3-primary)] text-white",
+  "perpétuo": "bg-[var(--md3-success-container)] text-[var(--md3-success)] border border-[var(--md3-outline-variant)]",
+  "lista_espera": "bg-[var(--md3-tertiary-container)] text-[var(--md3-tertiary)] border border-[var(--md3-outline-variant)]",
+  "sessão_aut": "bg-[var(--md3-tertiary-container)] text-[var(--md3-tertiary)] border border-[var(--md3-outline-variant)]",
+  "pre_lancamento": "bg-[var(--md3-tertiary-container)] text-[var(--md3-tertiary)] border border-[var(--md3-outline-variant)]",
   "black": "bg-black text-white border border-white/30",
-  "promo": "bg-orange-500/20 text-orange-400 border border-orange-500/30",
-  "renovação": "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30",
-  "recuperação": "bg-amber-500/20 text-amber-400 border border-amber-500/30",
-  "rmkt": "bg-pink-500/20 text-pink-400 border border-pink-500/30",
-  "upsell": "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30",
-  "recorrência": "bg-indigo-500/20 text-indigo-400 border border-indigo-500/30",
+  "promo": "bg-[var(--md3-secondary-container)] text-[var(--md3-secondary)] border border-[var(--md3-outline-variant)]",
+  "renovação": "bg-[var(--md3-tertiary-container)] text-[var(--md3-tertiary)] border border-[var(--md3-outline-variant)]",
+  "recuperação": "bg-[var(--md3-tertiary-container)] text-[var(--md3-tertiary)] border border-[var(--md3-outline-variant)]",
+  "rmkt": "bg-[var(--md3-tertiary-container)] text-[var(--md3-tertiary)] border border-[var(--md3-outline-variant)]",
+  "upsell": "bg-[var(--md3-success-container)] text-[var(--md3-success)] border border-[var(--md3-outline-variant)]",
+  "recorrência": "bg-[var(--md3-tertiary-container)] text-[var(--md3-tertiary)] border border-[var(--md3-outline-variant)]",
   "-": "",
 };
 
@@ -175,8 +175,8 @@ function EditableCell({
   }
 
   return (
-    <div 
-      className="flex items-center gap-1 cursor-pointer hover:bg-zinc-800/50 rounded px-1 py-0.5 group"
+    <div
+      className="flex items-center gap-1 cursor-pointer hover:bg-[var(--md3-surface-container)] rounded px-1 py-0.5 group"
       onClick={() => setEditing(true)}
     >
       <span>{prefix}{value}{suffix}</span>
@@ -215,54 +215,54 @@ function NucleoSection({
   const projecaoMensal = calcularProjecaoMensal(campanhas);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Card de Status do Núcleo */}
       <Card className={`border-2 ${
-        gap.status === 'critical' ? 'border-red-500 bg-red-500/5' : 
-        gap.status === 'warning' ? 'border-yellow-500 bg-yellow-500/5' : 
-        'border-green-500 bg-green-500/5'
+        gap.status === 'critical' ? 'border-[var(--md3-error)] bg-[var(--md3-primary-container)]' :
+        gap.status === 'warning' ? 'border-[var(--md3-tertiary)] bg-[var(--md3-tertiary-container)]' :
+        'border-[var(--md3-success)] bg-[var(--md3-success-container)]'
       }`}>
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
             <CardTitle className="text-xl flex items-center gap-2">
-              {gap.status === 'critical' && <AlertTriangle className="h-5 w-5 text-red-500" />}
-              {gap.status === 'warning' && <AlertTriangle className="h-5 w-5 text-yellow-500" />}
-              {gap.status === 'ok' && <CheckCircle className="h-5 w-5 text-green-500" />}
+              {gap.status === 'critical' && <AlertTriangle className="h-5 w-5 text-[var(--md3-error)]" />}
+              {gap.status === 'warning' && <AlertTriangle className="h-5 w-5 text-[var(--md3-tertiary)]" />}
+              {gap.status === 'ok' && <CheckCircle className="h-5 w-5 text-[var(--md3-success)]" />}
               Status {nucleo}
             </CardTitle>
-            <Badge 
+            <Badge
               variant={gap.status === 'critical' ? 'destructive' : gap.status === 'warning' ? 'outline' : 'default'}
-              className={gap.status === 'warning' ? 'border-yellow-500 text-yellow-500' : ''}
+              className={gap.status === 'warning' ? 'border-[var(--md3-tertiary)] text-[var(--md3-tertiary)]' : ''}
             >
               {gap.percentualAtingido.toFixed(0)}% da meta
             </Badge>
           </div>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-6">
             <div>
               <span className="text-sm text-muted-foreground">Meta Anual</span>
               <p className="text-2xl font-bold">{formatCurrency(metaAnual)}</p>
             </div>
             <div>
               <span className="text-sm text-muted-foreground">Faturado Janeiro</span>
-              <p className="text-2xl font-bold text-green-400">{formatCurrency(faturadoJaneiro)}</p>
+              <p className="text-2xl font-bold text-[var(--md3-success)]">{formatCurrency(faturadoJaneiro)}</p>
             </div>
             <div>
               <span className="text-sm text-muted-foreground">Projeção Atual</span>
-              <p className="text-2xl font-bold text-blue-400">{formatCurrency(projecaoAtual)}</p>
+              <p className="text-2xl font-bold text-[var(--md3-tertiary)]">{formatCurrency(projecaoAtual)}</p>
             </div>
             <div>
               <span className="text-sm text-muted-foreground">Gap</span>
-              <p className={`text-2xl font-bold ${gap.gap > 0 ? 'text-red-400' : 'text-green-400'}`}>
+              <p className={`text-2xl font-bold ${gap.gap > 0 ? 'text-[var(--md3-error)]' : 'text-[var(--md3-success)]'}`}>
                 {gap.gap > 0 ? '-' : '+'}{formatCurrency(Math.abs(gap.gap))}
               </p>
             </div>
           </div>
-          
+
           {gap.status !== 'ok' && gap.sugestoes.length > 0 && (
             <div className="mt-4 pt-4 border-t border-border">
-              <p className="text-sm font-medium text-yellow-400 mb-2">Ações sugeridas para cobrir o gap:</p>
+              <p className="text-sm font-medium text-[var(--md3-tertiary)] mb-2">Ações sugeridas para cobrir o gap:</p>
               <ul className="text-sm text-muted-foreground space-y-1">
                 {gap.sugestoes.slice(0, 3).map((s, i) => (
                   <li key={i}>• {s}</li>
@@ -306,30 +306,30 @@ function NucleoSection({
                 <TableRow>
                   <TableCell className="font-medium">Faturamento</TableCell>
                   {projecaoMensal.map(p => (
-                    <TableCell key={p.mes} className="text-center text-green-400 text-sm">
-                      <EditableCell 
-                        value={formatCurrency(p.faturamento)} 
+                    <TableCell key={p.mes} className="text-center text-[var(--md3-success)] text-sm">
+                      <EditableCell
+                        value={formatCurrency(p.faturamento)}
                         onSave={(v) => console.log('Save:', p.mes, v)}
                         type="currency"
                       />
                     </TableCell>
                   ))}
-                  <TableCell className="text-center font-bold text-green-400">
+                  <TableCell className="text-center font-bold text-[var(--md3-success)]">
                     {formatCurrency(projecaoMensal.reduce((acc, p) => acc + p.faturamento, 0))}
                   </TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className="font-medium">Investimento</TableCell>
                   {projecaoMensal.map(p => (
-                    <TableCell key={p.mes} className="text-center text-red-400 text-sm">
-                      <EditableCell 
-                        value={formatCurrency(p.investimento)} 
+                    <TableCell key={p.mes} className="text-center text-[var(--md3-error)] text-sm">
+                      <EditableCell
+                        value={formatCurrency(p.investimento)}
                         onSave={(v) => console.log('Save:', p.mes, v)}
                         type="currency"
                       />
                     </TableCell>
                   ))}
-                  <TableCell className="text-center font-bold text-red-400">
+                  <TableCell className="text-center font-bold text-[var(--md3-error)]">
                     {formatCurrency(projecaoMensal.reduce((acc, p) => acc + p.investimento, 0))}
                   </TableCell>
                 </TableRow>
@@ -355,7 +355,7 @@ function NucleoSection({
       </Card>
 
       {/* Campanhas por Tier */}
-      <div className="space-y-4">
+      <div className="space-y-6">
         {campanhasPorTier.filter(t => t.campanhas.length > 0).map(tierGroup => (
           <Card key={tierGroup.tier}>
             <CardHeader className="pb-3">
@@ -366,14 +366,14 @@ function NucleoSection({
                   </CardTitle>
                   <CardDescription>{tierDescricoes[tierGroup.tier].descricao}</CardDescription>
                 </div>
-                <div className="flex items-center gap-4 text-sm">
+                <div className="flex items-center gap-6 text-sm">
                   <div>
                     <span className="text-muted-foreground">Faturamento: </span>
-                    <span className="text-green-400 font-medium">{formatCurrency(tierGroup.faturamento)}</span>
+                    <span className="text-[var(--md3-success)] font-medium">{formatCurrency(tierGroup.faturamento)}</span>
                   </div>
                   <div>
                     <span className="text-muted-foreground">Investimento: </span>
-                    <span className="text-red-400 font-medium">{formatCurrency(tierGroup.investimento)}</span>
+                    <span className="text-[var(--md3-error)] font-medium">{formatCurrency(tierGroup.investimento)}</span>
                   </div>
                   <Badge variant="outline">{tierGroup.campanhas.length} campanhas</Badge>
                 </div>
@@ -410,16 +410,16 @@ function NucleoSection({
                             onSave={(v) => console.log('Save produto:', v)}
                           />
                         </TableCell>
-                        <TableCell className="text-right text-green-400">
-                          <EditableCell 
-                            value={campanha.metaFaturamento ? formatCurrency(campanha.metaFaturamento) : '-'} 
+                        <TableCell className="text-right text-[var(--md3-success)]">
+                          <EditableCell
+                            value={campanha.metaFaturamento ? formatCurrency(campanha.metaFaturamento) : '-'}
                             onSave={(v) => console.log('Save meta:', v)}
                             type="currency"
                           />
                         </TableCell>
-                        <TableCell className="text-right text-red-400">
-                          <EditableCell 
-                            value={campanha.investimentoProjetado ? formatCurrency(campanha.investimentoProjetado) : '-'} 
+                        <TableCell className="text-right text-[var(--md3-error)]">
+                          <EditableCell
+                            value={campanha.investimentoProjetado ? formatCurrency(campanha.investimentoProjetado) : '-'}
                             onSave={(v) => console.log('Save invest:', v)}
                             type="currency"
                           />
@@ -443,7 +443,7 @@ function NucleoSection({
                             <Button variant="ghost" size="icon" className="h-7 w-7">
                               <Pencil className="h-3 w-3" />
                             </Button>
-                            <Button variant="ghost" size="icon" className="h-7 w-7 text-red-400 hover:text-red-300">
+                            <Button variant="ghost" size="icon" className="h-7 w-7 text-[var(--md3-error)] hover:text-[var(--md3-error)]">
                               <Trash2 className="h-3 w-3" />
                             </Button>
                           </div>
@@ -489,7 +489,7 @@ export default function Estrategico() {
   const getGap = (nucleo: Nucleo) => gapsAnalysis.find(g => g.nucleo === nucleo) || gapsAnalysis[0];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -513,17 +513,17 @@ export default function Estrategico() {
       </div>
 
       {/* Tabs por Núcleo */}
-      <Tabs value={nucleoAtivo} onValueChange={(v) => setNucleoAtivo(v as Nucleo)} className="space-y-6">
-        <TabsList className="bg-zinc-900/50 border border-zinc-800">
-          <TabsTrigger value="MGS" className="data-[state=active]:bg-red-600 data-[state=active]:text-white">
+      <Tabs value={nucleoAtivo} onValueChange={(v) => setNucleoAtivo(v as Nucleo)} className="space-y-8">
+        <TabsList className="bg-[var(--md3-surface-container-low)] border border-[var(--md3-outline-variant)]">
+          <TabsTrigger value="MGS" className="data-[state=active]:bg-[var(--md3-primary)] data-[state=active]:text-white">
             <Building2 className="w-4 h-4 mr-2" />
             MGS
           </TabsTrigger>
-          <TabsTrigger value="ACELERAI" className="data-[state=active]:bg-red-600 data-[state=active]:text-white">
+          <TabsTrigger value="ACELERAI" className="data-[state=active]:bg-[var(--md3-primary)] data-[state=active]:text-white">
             <Sparkles className="w-4 h-4 mr-2" />
             Aceleraí
           </TabsTrigger>
-          <TabsTrigger value="OUTROS" className="data-[state=active]:bg-red-600 data-[state=active]:text-white">
+          <TabsTrigger value="OUTROS" className="data-[state=active]:bg-[var(--md3-primary)] data-[state=active]:text-white">
             <Rocket className="w-4 h-4 mr-2" />
             Outros
           </TabsTrigger>

@@ -23,6 +23,8 @@ import {
   UserSearch,
   Layers,
   Cloud,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -36,6 +38,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useSwipeNavigation } from "@/hooks/useSwipe";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -175,16 +178,16 @@ function NavContent({
                 <Link key={item.href} href={item.href} onClick={onItemClick}>
                   <div
                     className={cn(
-                      "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all",
+                      "flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm transition-all duration-200",
                       isActive
-                        ? "bg-sidebar-accent text-sidebar-accent-foreground glow-red"
-                        : "text-sidebar-foreground hover:bg-sidebar-accent/50"
+                        ? "bg-[var(--md3-primary-container)]/80 text-[var(--md3-on-primary-container)]"
+                        : "text-sidebar-foreground hover:bg-[var(--md3-surface-container-high)]/50"
                     )}
                   >
                     <item.icon
                       className={cn(
                         "h-5 w-5 shrink-0",
-                        isActive ? "text-primary" : "text-muted-foreground"
+                        isActive ? "text-[var(--md3-primary)]" : "text-[var(--md3-on-surface-variant)]"
                       )}
                     />
                     {!collapsed && (
@@ -192,13 +195,13 @@ function NavContent({
                         <div className="flex items-center gap-2">
                           <span className="font-medium">{item.label}</span>
                           {item.badge && (
-                            <Badge variant="outline" className="text-[10px] px-1 py-0 h-4 text-yellow-400 border-yellow-400/50">
+                            <Badge variant="outline" className="text-[10px] px-1 py-0 h-4 text-[var(--md3-tertiary)] border-[var(--md3-tertiary)]/50">
                               {item.badge}
                             </Badge>
                           )}
                         </div>
                         {item.description && (
-                          <span className="text-xs text-muted-foreground">
+                          <span className="text-xs text-[var(--md3-on-surface-variant)]">
                             {item.description}
                           </span>
                         )}
@@ -236,15 +239,15 @@ function SwipeIndicator({
 
   return (
     <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 md:hidden">
-      <div className="flex items-center gap-2 px-4 py-2 bg-zinc-900/90 backdrop-blur-sm rounded-full border border-zinc-700 shadow-lg">
+      <div className="flex items-center gap-2 px-4 py-2 bg-[var(--md3-surface-container-high)]/95 backdrop-blur-sm rounded-full border border-[var(--md3-outline-variant)]/30 shadow-md">
         {/* Seta esquerda */}
         <div className={cn(
           "transition-opacity",
           canGoPrevious ? "opacity-100" : "opacity-30"
         )}>
-          <ChevronLeft className="h-4 w-4 text-muted-foreground" />
+          <ChevronLeft className="h-4 w-4 text-[var(--md3-on-surface-variant)]" />
         </div>
-        
+
         {/* Indicadores de página */}
         <div className="flex gap-1">
           {Array.from({ length: Math.min(totalRoutes, 7) }).map((_, i) => {
@@ -252,34 +255,34 @@ function SwipeIndicator({
             const startIndex = Math.max(0, currentIndex - 3);
             const actualIndex = startIndex + i;
             if (actualIndex >= totalRoutes) return null;
-            
+
             return (
               <div
                 key={actualIndex}
                 className={cn(
                   "h-1.5 rounded-full transition-all",
-                  actualIndex === currentIndex 
-                    ? "w-4 bg-primary" 
-                    : "w-1.5 bg-zinc-600"
+                  actualIndex === currentIndex
+                    ? "w-4 bg-[var(--md3-primary)]"
+                    : "w-1.5 bg-[var(--md3-outline)]"
                 )}
               />
             );
           })}
         </div>
-        
+
         {/* Seta direita */}
         <div className={cn(
           "transition-opacity",
           canGoNext ? "opacity-100" : "opacity-30"
         )}>
-          <ChevronRight className="h-4 w-4 text-muted-foreground" />
+          <ChevronRight className="h-4 w-4 text-[var(--md3-on-surface-variant)]" />
         </div>
       </div>
-      
+
       {/* Dica de swipe */}
       {showHint && (
         <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
-          <span className="text-xs text-muted-foreground bg-zinc-900/80 px-2 py-1 rounded">
+          <span className="text-xs text-[var(--md3-on-surface-variant)] bg-[var(--md3-surface-container)]/90 px-2 py-1 rounded-lg">
             Deslize para navegar
           </span>
         </div>
@@ -293,6 +296,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [location, setLocation] = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   // Navegação por swipe
   const navigate = useCallback((path: string) => {
@@ -325,64 +329,76 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     <div className="flex h-screen bg-background">
       {/* Mobile Header */}
       <div className="fixed top-0 left-0 right-0 z-50 md:hidden">
-        <div className="flex h-14 items-center justify-between px-4 bg-sidebar border-b border-sidebar-border">
+        <div className="flex h-16 items-center justify-between px-4 bg-sidebar border-b border-sidebar-border/50">
           <div className="flex items-center gap-3">
-            <img src="/lirica-logo.png" alt="Lírica" className="h-10 w-10 rounded-lg" />
-            <div className="flex flex-col">
-              <span className="text-sm font-semibold text-sidebar-foreground">
+            <img src="/lirica-logo.png" alt="Lírica" className="h-10 w-10 rounded-2xl shrink-0" />
+            <div className="flex flex-col min-w-0">
+              <span className="text-base font-semibold text-sidebar-foreground truncate" style={{ fontFamily: 'var(--font-display)' }}>
                 Lírica
               </span>
-              <span className="text-[9px] text-muted-foreground leading-tight">O Renascimento da Comunicação</span>
+              <span className="text-[10px] text-muted-foreground leading-tight truncate">O Renascimento da Comunicação</span>
             </div>
           </div>
           
-          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">Menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-72 p-0 bg-sidebar border-sidebar-border">
-              <SheetHeader className="p-4 border-b border-sidebar-border">
-                <SheetTitle className="flex items-center gap-3 text-sidebar-foreground">
-                  <img src="/lirica-logo.png" alt="Lírica" className="h-10 w-10 rounded-lg" />
-                  <div className="flex flex-col items-start">
-                    <span className="text-sm font-semibold">Lírica</span>
-                    <span className="text-[9px] text-muted-foreground font-normal leading-tight">O Renascimento da Comunicação</span>
+          <div className="flex items-center gap-1">
+            <Button variant="ghost" size="icon" onClick={toggleTheme}>
+              {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+            </Button>
+            <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Menu</span>
+                </Button>
+              </SheetTrigger>
+            <SheetContent side="left" className="w-72 p-0 bg-sidebar border-sidebar-border/50">
+              <SheetHeader className="h-[72px] px-4 border-b border-sidebar-border/50 flex items-center">
+                <SheetTitle className="flex items-center gap-3 text-sidebar-foreground w-full">
+                  <img src="/lirica-logo.png" alt="Lírica" className="h-11 w-11 rounded-2xl shrink-0" />
+                  <div className="flex flex-col items-start min-w-0">
+                    <span className="text-base font-semibold truncate" style={{ fontFamily: 'var(--font-display)' }}>Lírica</span>
+                    <span className="text-[10px] text-muted-foreground font-normal leading-tight truncate">O Renascimento da Comunicação</span>
                   </div>
                 </SheetTitle>
               </SheetHeader>
-              <ScrollArea className="h-[calc(100vh-80px)] py-4">
+              <ScrollArea className="h-[calc(100vh-72px)] py-4">
                 <NavContent onItemClick={() => setMobileOpen(false)} />
               </ScrollArea>
             </SheetContent>
-          </Sheet>
+            </Sheet>
+          </div>
         </div>
       </div>
 
       {/* Desktop Sidebar */}
       <aside
         className={cn(
-          "hidden md:flex flex-col border-r border-sidebar-border bg-sidebar transition-all duration-300",
+          "hidden md:flex flex-col border-r border-sidebar-border/50 bg-sidebar transition-all duration-300 h-screen",
           collapsed ? "w-16" : "w-64"
         )}
       >
-        {/* Logo */}
-        <div className="flex h-16 items-center justify-between px-4 border-b border-sidebar-border">
+        {/* Logo Header */}
+        <div className={cn(
+          "flex items-center border-b border-sidebar-border/50 shrink-0",
+          collapsed ? "h-16 justify-center px-2" : "h-[72px] px-4 gap-3"
+        )}>
+          <img
+            src="/lirica-logo.png"
+            alt="Lírica"
+            className={cn(
+              "rounded-2xl shrink-0",
+              collapsed ? "h-8 w-8" : "h-11 w-11"
+            )}
+          />
           {!collapsed && (
-            <div className="flex items-center gap-3">
-              <img src="/lirica-logo.png" alt="Lírica" className="h-10 w-10 rounded-lg" />
-              <div className="flex flex-col">
-                <span className="text-sm font-semibold text-sidebar-foreground" style={{ fontFamily: 'var(--font-display)' }}>
-                  Lírica
-                </span>
-                <span className="text-[9px] text-muted-foreground leading-tight">O Renascimento da Comunicação</span>
-              </div>
+            <div className="flex flex-col min-w-0">
+              <span className="text-base font-semibold text-sidebar-foreground truncate" style={{ fontFamily: 'var(--font-display)' }}>
+                Lírica
+              </span>
+              <span className="text-[10px] text-muted-foreground leading-tight truncate">
+                O Renascimento da Comunicação
+              </span>
             </div>
-          )}
-          {collapsed && (
-            <img src="/lirica-logo.png" alt="Lírica" className="h-8 w-8 rounded-lg mx-auto" />
           )}
         </div>
 
@@ -391,13 +407,21 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <NavContent collapsed={collapsed} />
         </ScrollArea>
 
-        {/* Collapse Button */}
+        {/* Theme Toggle & Collapse Button */}
         <Separator />
-        <div className="p-2">
+        <div className="p-2 flex items-center gap-1">
           <Button
             variant="ghost"
             size="sm"
-            className="w-full justify-center"
+            className="flex-1 justify-center"
+            onClick={toggleTheme}
+          >
+            {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="flex-1 justify-center"
             onClick={() => setCollapsed(!collapsed)}
           >
             {collapsed ? (
@@ -412,7 +436,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Main Content */}
       <main className="flex-1 overflow-hidden">
         <ScrollArea className="h-full">
-          <div className="pt-14 md:pt-0 pb-16 md:pb-0">
+          <div className="pt-16 md:pt-0 pb-16 md:pb-0">
             <div className="p-4 md:p-6">{children}</div>
           </div>
         </ScrollArea>

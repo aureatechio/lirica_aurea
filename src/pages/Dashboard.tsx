@@ -255,10 +255,10 @@ export default function Dashboard() {
         </div>
         <div className="flex flex-wrap items-center gap-2 md:gap-6">
           {/* Seletor de Mês */}
-          <div className="flex items-center gap-2 bg-[var(--md3-surface-container)] rounded-lg p-1">
-            <Button 
-              variant="ghost" 
-              size="icon" 
+          <div className="flex items-center gap-2 bg-[var(--md3-surface-container)]/50 rounded-2xl p-1 border border-[var(--md3-outline-variant)]/20">
+            <Button
+              variant="ghost"
+              size="icon"
               className="h-8 w-8"
               onClick={() => setMesSelecionado(Math.max(0, mesSelecionado - 1))}
               disabled={mesSelecionado === 0}
@@ -275,9 +275,9 @@ export default function Dashboard() {
                 ))}
               </SelectContent>
             </Select>
-            <Button 
-              variant="ghost" 
-              size="icon" 
+            <Button
+              variant="ghost"
+              size="icon"
               className="h-8 w-8"
               onClick={() => setMesSelecionado(Math.min(11, mesSelecionado + 1))}
               disabled={mesSelecionado === 11}
@@ -472,7 +472,7 @@ export default function Dashboard() {
           <CardContent>
             {/* Parâmetros Editáveis */}
             {editandoLeads && (
-              <div className="mb-6 p-4 rounded-lg bg-[var(--md3-surface-container)] border border-[var(--md3-outline-variant)] space-y-4">
+              <div className="mb-6 p-4 rounded-2xl bg-[var(--md3-surface-container)]/50 border border-[var(--md3-outline-variant)]/30 space-y-4">
                 <h4 className="font-medium text-sm text-muted-foreground">Parâmetros de Cálculo</h4>
                 <div className="grid gap-4 md:grid-cols-3">
                   <div className="space-y-2">
@@ -519,28 +519,28 @@ export default function Dashboard() {
             )}
 
             <div className="grid gap-4 md:grid-cols-4">
-              <div className="bg-[var(--md3-surface-container-low)] rounded-lg p-4 border border-[var(--md3-outline-variant)] group relative">
+              <div className="bg-[var(--md3-surface-container-low)]/30 rounded-2xl p-4 border border-[var(--md3-outline-variant)]/20 hover:border-[var(--md3-outline-variant)]/40 transition-all group relative">
                 <div className="text-sm text-muted-foreground mb-1">Vendas Necessárias</div>
                 <div className="text-2xl font-bold text-[var(--md3-primary)]">{formatNumber(vendasNecessarias)}</div>
                 <div className="text-xs text-muted-foreground mt-1">
                   Ticket médio: {formatCurrency(ticketMedio)}
                 </div>
               </div>
-              <div className="bg-[var(--md3-surface-container-low)] rounded-lg p-4 border border-[var(--md3-outline-variant)]">
+              <div className="bg-[var(--md3-surface-container-low)]/30 rounded-2xl p-4 border border-[var(--md3-outline-variant)]/20 hover:border-[var(--md3-outline-variant)]/40 transition-all">
                 <div className="text-sm text-muted-foreground mb-1">Leads Totais</div>
                 <div className="text-2xl font-bold text-[var(--md3-secondary)]">{formatNumber(leadsNecessarios)}</div>
                 <div className="text-xs text-muted-foreground mt-1">
                   Com conversão de {taxaConversao}%
                 </div>
               </div>
-              <div className="bg-[var(--md3-surface-container-low)] rounded-lg p-4 border border-[var(--md3-outline-variant)]">
+              <div className="bg-[var(--md3-surface-container-low)]/30 rounded-2xl p-4 border border-[var(--md3-outline-variant)]/20 hover:border-[var(--md3-outline-variant)]/40 transition-all">
                 <div className="text-sm text-muted-foreground mb-1">Leads/Mês</div>
                 <div className="text-2xl font-bold text-[var(--md3-tertiary)]">{formatNumber(leadsNecessariosPorMes)}</div>
                 <div className="text-xs text-muted-foreground mt-1">
                   Próximos {mesesRestantes} meses
                 </div>
               </div>
-              <div className="bg-[var(--md3-surface-container-low)] rounded-lg p-4 border border-[var(--md3-outline-variant)]">
+              <div className="bg-[var(--md3-surface-container-low)]/30 rounded-2xl p-4 border border-[var(--md3-outline-variant)]/20 hover:border-[var(--md3-outline-variant)]/40 transition-all">
                 <div className="text-sm text-muted-foreground mb-1">CPL Máximo</div>
                 <div className="text-2xl font-bold text-[var(--md3-success)]">
                   {formatCurrency(investimentoEditavel[nucleoSelecionado] / leadsNecessarios)}
@@ -596,7 +596,7 @@ export default function Dashboard() {
               const noTarget = projecao >= dados.metaAnual;
               
               return (
-                <Card key={nucleo} className="hover:border-primary/50 transition-colors cursor-pointer" onClick={() => setNucleoSelecionado(nucleo)}>
+                <Card key={nucleo} className="hover:border-[var(--md3-primary)]/40 transition-all cursor-pointer hover:shadow-md" onClick={() => setNucleoSelecionado(nucleo)}>
                   <CardHeader className="pb-2">
                     <div className="flex items-center justify-between">
                       <Badge className={nucleoColors[nucleo]}>{nucleo}</Badge>
@@ -651,8 +651,8 @@ export default function Dashboard() {
           <CardContent>
             <div className="grid gap-3">
               {tiersData.map((tier) => (
-                <div key={tier.tier} className="flex items-center gap-4 p-3 bg-[var(--md3-surface-container-low)] rounded-lg border border-[var(--md3-outline-variant)]">
-                  <div className={`w-10 h-10 rounded-lg ${tierColors[tier.tierNum].bg} flex items-center justify-center text-white font-bold`}>
+                <div key={tier.tier} className="flex items-center gap-4 p-3 bg-[var(--md3-surface-container-low)]/30 rounded-2xl border border-[var(--md3-outline-variant)]/20 hover:border-[var(--md3-outline-variant)]/40 transition-all">
+                  <div className={`w-10 h-10 rounded-xl ${tierColors[tier.tierNum].bg} flex items-center justify-center text-white font-bold shadow-sm`}>
                     {tier.tier}
                   </div>
                   <div className="flex-1">
@@ -716,8 +716,8 @@ export default function Dashboard() {
             <CardContent>
               <div className="space-y-3">
                 {proximasCampanhas.map((campanha, index) => (
-                  <div key={index} className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--md3-surface-container)] transition-colors">
-                    <div className={`w-8 h-8 rounded-lg ${tierColors[campanha.tier].bg} flex items-center justify-center text-white text-xs font-bold`}>
+                  <div key={index} className="flex items-center gap-3 p-2 rounded-xl hover:bg-[var(--md3-surface-container)]/50 transition-all">
+                    <div className={`w-8 h-8 rounded-lg ${tierColors[campanha.tier].bg} flex items-center justify-center text-white text-xs font-bold shadow-sm`}>
                       T{campanha.tier}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -865,7 +865,7 @@ export default function Dashboard() {
             </div>
 
             {/* Resumo */}
-            <div className="p-4 rounded-lg bg-[var(--md3-surface-container)] border border-[var(--md3-outline-variant)]">
+            <div className="p-4 rounded-2xl bg-[var(--md3-surface-container)]/50 border border-[var(--md3-outline-variant)]/30">
               <h4 className="font-medium mb-2">Resumo das Alterações</h4>
               <div className="grid gap-2 text-sm">
                 <div className="flex justify-between">
@@ -921,7 +921,7 @@ export default function Dashboard() {
             </p>
 
             {/* Resumo das alterações */}
-            <div className="p-4 rounded-lg bg-[var(--md3-surface-container)] border border-[var(--md3-outline-variant)]">
+            <div className="p-4 rounded-2xl bg-[var(--md3-surface-container)]/50 border border-[var(--md3-outline-variant)]/30">
               <h4 className="font-medium mb-3 text-sm">Dados a serem exportados:</h4>
               <div className="grid gap-2 text-sm">
                 <div className="flex justify-between">
@@ -988,12 +988,12 @@ export default function Dashboard() {
                     <div className="text-xs text-muted-foreground">Visão mensal com faturamento por mês</div>
                   </div>
                 </div>
-                <ArrowRight className="h-5 w-5 text-orange-400" />
+                <ArrowRight className="h-5 w-5 text-[var(--md3-on-secondary-container)]" />
               </Button>
 
               <Button
                 variant="outline"
-                className="w-full justify-between h-auto py-4 border-green-500/30 hover:bg-green-500/10"
+                className="w-full justify-between h-auto py-4 border-[var(--md3-success)] hover:bg-[var(--md3-success-container)]"
                 onClick={() => {
                   toast.success("Dados exportados para todas as abas!", {
                     description: "Estratégico, Tático e Operacional sincronizados."
@@ -1002,15 +1002,15 @@ export default function Dashboard() {
                 }}
               >
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-green-500/20">
-                    <Sparkles className="h-5 w-5 text-green-400" />
+                  <div className="p-2 rounded-lg bg-[var(--md3-success-container)]">
+                    <Sparkles className="h-5 w-5 text-[var(--md3-on-success-container)]" />
                   </div>
                   <div className="text-left">
                     <div className="font-medium">Exportar para Todas as Abas</div>
                     <div className="text-xs text-muted-foreground">Sincronizar Estratégico, Tático e Operacional</div>
                   </div>
                 </div>
-                <ArrowRight className="h-5 w-5 text-green-400" />
+                <ArrowRight className="h-5 w-5 text-[var(--md3-on-success-container)]" />
               </Button>
             </div>
           </div>

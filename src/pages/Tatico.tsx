@@ -71,9 +71,9 @@ const campanhasFevereiro = [
 ];
 
 const nucleoColors: Record<Nucleo, string> = {
-  MGS: "bg-red-500/20 text-red-400 border-red-500/30",
-  ACELERAI: "bg-orange-500/20 text-orange-400 border-orange-500/30",
-  OUTROS: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+  MGS: "bg-[var(--md3-primary-container)] text-[var(--md3-primary)] border-[var(--md3-outline-variant)]",
+  ACELERAI: "bg-[var(--md3-secondary-container)] text-[var(--md3-secondary)] border-[var(--md3-outline-variant)]",
+  OUTROS: "bg-[var(--md3-tertiary-container)] text-[var(--md3-tertiary)] border-[var(--md3-outline-variant)]",
 };
 
 function formatCurrency(value: number): string {
@@ -134,7 +134,7 @@ export default function Tatico() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -202,7 +202,7 @@ export default function Tatico() {
       </div>
 
       {/* KPIs do Mês */}
-      <div className="grid gap-4 md:grid-cols-4">
+      <div className="grid gap-6 md:grid-cols-4">
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
@@ -246,7 +246,7 @@ export default function Tatico() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-400" style={{ fontFamily: 'var(--font-display)' }}>
+            <div className="text-2xl font-bold text-[var(--md3-success)]" style={{ fontFamily: 'var(--font-display)' }}>
               {roasProjetadoTotal.toFixed(2)}x
             </div>
             <p className="text-xs text-muted-foreground mt-1">
@@ -274,12 +274,12 @@ export default function Tatico() {
       </div>
 
       {/* Distribuição por Núcleo */}
-      <div className="grid gap-4 md:grid-cols-2">
-        <Card className="border-red-500/30">
+      <div className="grid gap-6 md:grid-cols-2">
+        <Card className="border-[var(--md3-outline-variant)]">
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium flex items-center gap-2">
-                <Building2 className="h-4 w-4 text-red-400" />
+                <Building2 className="h-4 w-4 text-[var(--md3-primary)]" />
                 MGS
               </CardTitle>
               <Badge className={nucleoColors.MGS}>
@@ -299,17 +299,17 @@ export default function Tatico() {
               </div>
               <div className="flex justify-between">
                 <span className="text-sm text-muted-foreground">ROAS Proj.</span>
-                <span className="text-green-400">{(totaisPorNucleo.MGS.fat / totaisPorNucleo.MGS.inv).toFixed(2)}x</span>
+                <span className="text-[var(--md3-success)]">{(totaisPorNucleo.MGS.fat / totaisPorNucleo.MGS.inv).toFixed(2)}x</span>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="border-orange-500/30">
+        <Card className="border-[var(--md3-outline-variant)]">
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium flex items-center gap-2">
-                <Users className="h-4 w-4 text-orange-400" />
+                <Users className="h-4 w-4 text-[var(--md3-secondary)]" />
                 Aceleraí
               </CardTitle>
               <Badge className={nucleoColors.ACELERAI}>
@@ -329,7 +329,7 @@ export default function Tatico() {
               </div>
               <div className="flex justify-between">
                 <span className="text-sm text-muted-foreground">ROAS Proj.</span>
-                <span className="text-green-400">{(totaisPorNucleo.ACELERAI.fat / totaisPorNucleo.ACELERAI.inv).toFixed(2)}x</span>
+                <span className="text-[var(--md3-success)]">{(totaisPorNucleo.ACELERAI.fat / totaisPorNucleo.ACELERAI.inv).toFixed(2)}x</span>
               </div>
             </div>
           </CardContent>
@@ -382,14 +382,14 @@ export default function Tatico() {
                           {editMode ? (
                             <Input type="number" defaultValue={campanha.fatMeta} className="w-24 h-8 text-right" />
                           ) : (
-                            <span className="text-green-400">{formatCurrency(campanha.fatMeta)}</span>
+                            <span className="text-[var(--md3-success)]">{formatCurrency(campanha.fatMeta)}</span>
                           )}
                         </TableCell>
                         <TableCell className="text-right">
                           {editMode ? (
                             <Input type="number" defaultValue={campanha.invProjetado} className="w-24 h-8 text-right" />
                           ) : (
-                            <span className="text-red-400">{formatCurrency(campanha.invProjetado)}</span>
+                            <span className="text-[var(--md3-error)]">{formatCurrency(campanha.invProjetado)}</span>
                           )}
                         </TableCell>
                         <TableCell className="text-right font-medium">
@@ -417,8 +417,8 @@ export default function Tatico() {
                     {/* Linha de totais */}
                     <TableRow className="bg-muted/50 font-bold">
                       <TableCell colSpan={3}>TOTAL</TableCell>
-                      <TableCell className="text-right text-green-400">{formatCurrency(totais.fatMeta)}</TableCell>
-                      <TableCell className="text-right text-red-400">{formatCurrency(totais.invProjetado)}</TableCell>
+                      <TableCell className="text-right text-[var(--md3-success)]">{formatCurrency(totais.fatMeta)}</TableCell>
+                      <TableCell className="text-right text-[var(--md3-error)]">{formatCurrency(totais.invProjetado)}</TableCell>
                       <TableCell className="text-right">{roasProjetadoTotal.toFixed(2)}x</TableCell>
                       <TableCell className="text-right">{formatCurrency(totais.fatAtual)}</TableCell>
                       <TableCell className="text-right">{formatCurrency(totais.invAtual)}</TableCell>
@@ -495,11 +495,11 @@ export default function Tatico() {
                     </div>
                     <div className="flex justify-between items-center p-3 rounded bg-background">
                       <span className="text-muted-foreground">Investimento Estimado</span>
-                      <span className="text-xl font-bold text-red-400">{formatCurrency(investimentoEstimado)}</span>
+                      <span className="text-xl font-bold text-[var(--md3-error)]">{formatCurrency(investimentoEstimado)}</span>
                     </div>
                     <div className="flex justify-between items-center p-3 rounded bg-background">
                       <span className="text-muted-foreground">ROAS Estimado</span>
-                      <span className="text-xl font-bold text-green-400">{roasEstimado.toFixed(2)}x</span>
+                      <span className="text-xl font-bold text-[var(--md3-success)]">{roasEstimado.toFixed(2)}x</span>
                     </div>
                   </div>
                 </div>

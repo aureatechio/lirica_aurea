@@ -18,12 +18,12 @@ interface CardProps extends React.ComponentProps<"div"> {
   elevation?: Elevation;
 }
 
-function Card({ className, elevation = 1, ...props }: CardProps) {
+function Card({ className, elevation = 0, ...props }: CardProps) {
   return (
     <div
       data-slot="card"
       className={cn(
-        "bg-[var(--md3-surface)] text-[var(--md3-on-surface)] flex flex-col gap-6 rounded-md3-lg border border-[var(--md3-outline-variant)] py-6 transition-shadow duration-md3-short4 ease-md3-standard",
+        "bg-[var(--md3-surface)] text-[var(--md3-on-surface)] flex flex-col gap-6 rounded-2xl border border-[var(--md3-outline-variant)]/30 py-6 transition-all duration-md3-short4 ease-md3-standard hover:border-[var(--md3-outline-variant)]/50",
         elevationClasses[elevation],
         className
       )}

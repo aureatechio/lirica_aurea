@@ -32,8 +32,21 @@
     --md3-background: oklch(0.98 0.005 260);
     --md3-on-background: oklch(0.15 0.01 260);
 
+    /* Surface containers for elevation hierarchy - LIGHT */
+    --md3-surface-container-lowest: oklch(1.00 0 0);
+    --md3-surface-container-low: oklch(0.98 0.005 260);
+    --md3-surface-container: oklch(0.96 0.005 260);
+    --md3-surface-container-high: oklch(0.94 0.008 260);
+    --md3-surface-container-highest: oklch(0.92 0.008 260);
+
     /* Elevation/Shadow */
     --md3-shadow: oklch(0 0 0);
+
+    /* Success color for positive indicators - LIGHT */
+    --md3-success: oklch(0.45 0.18 145);
+    --md3-on-success: oklch(1 0 0);
+    --md3-success-container: oklch(0.90 0.12 145);
+    --md3-on-success-container: oklch(0.25 0.10 145);
 
     /* State layers (opacity applied in components) */
     --md3-state-hover-opacity: 0.08;

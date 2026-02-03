@@ -54,19 +54,19 @@ const campanhasDisponiveis = [
 ];
 
 const nucleoColors: Record<Nucleo, string> = {
-  MGS: "bg-red-500/20 text-red-400 border-red-500/30",
-  ACELERAI: "bg-orange-500/20 text-orange-400 border-orange-500/30",
-  OUTROS: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+  MGS: "bg-[var(--md3-primary-container)] text-[var(--md3-primary)] border-[var(--md3-outline-variant)]",
+  ACELERAI: "bg-[var(--md3-secondary-container)] text-[var(--md3-secondary)] border-[var(--md3-outline-variant)]",
+  OUTROS: "bg-[var(--md3-tertiary-container)] text-[var(--md3-tertiary)] border-[var(--md3-outline-variant)]",
 };
 
 // Cenários de performance
 const cenarios = [
-  { nome: "Ideal", cpl: 30, conversaoMult: 1.5, cor: "text-green-400 bg-green-500/20" },
-  { nome: "Ótimo", cpl: 40, conversaoMult: 1.3, cor: "text-blue-400 bg-blue-500/20" },
-  { nome: "Bom", cpl: 50, conversaoMult: 1.1, cor: "text-cyan-400 bg-cyan-500/20" },
-  { nome: "Padrão", cpl: 60, conversaoMult: 1.0, cor: "text-yellow-400 bg-yellow-500/20" },
-  { nome: "Ruim", cpl: 70, conversaoMult: 0.8, cor: "text-orange-400 bg-orange-500/20" },
-  { nome: "Péssimo", cpl: 80, conversaoMult: 0.6, cor: "text-red-400 bg-red-500/20" },
+  { nome: "Ideal", cpl: 30, conversaoMult: 1.5, cor: "text-[var(--md3-success)] bg-[var(--md3-success-container)]" },
+  { nome: "Ótimo", cpl: 40, conversaoMult: 1.3, cor: "text-[var(--md3-tertiary)] bg-[var(--md3-tertiary-container)]" },
+  { nome: "Bom", cpl: 50, conversaoMult: 1.1, cor: "text-[var(--md3-tertiary)] bg-[var(--md3-tertiary-container)]" },
+  { nome: "Padrão", cpl: 60, conversaoMult: 1.0, cor: "text-[var(--md3-tertiary)] bg-[var(--md3-tertiary-container)]" },
+  { nome: "Ruim", cpl: 70, conversaoMult: 0.8, cor: "text-[var(--md3-secondary)] bg-[var(--md3-secondary-container)]" },
+  { nome: "Péssimo", cpl: 80, conversaoMult: 0.6, cor: "text-[var(--md3-error)] bg-[var(--md3-primary-container)]" },
 ];
 
 function formatCurrency(value: number): string {
@@ -131,7 +131,7 @@ export default function Operacional() {
   const cenarioInfo = cenarios.find(c => c.nome === cenarioAtual);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -184,11 +184,11 @@ export default function Operacional() {
               <div className="flex items-center gap-6">
                 <div className="text-right">
                   <p className="text-xs text-muted-foreground">Meta</p>
-                  <p className="text-lg font-bold text-green-400">{formatCurrency(campanha.metaFat)}</p>
+                  <p className="text-lg font-bold text-[var(--md3-success)]">{formatCurrency(campanha.metaFat)}</p>
                 </div>
                 <div className="text-right">
                   <p className="text-xs text-muted-foreground">Investimento</p>
-                  <p className="text-lg font-bold text-red-400">{formatCurrency(campanha.invProjetado)}</p>
+                  <p className="text-lg font-bold text-[var(--md3-error)]">{formatCurrency(campanha.invProjetado)}</p>
                 </div>
                 <div className="text-right">
                   <p className="text-xs text-muted-foreground">ROAS Alvo</p>
@@ -200,7 +200,7 @@ export default function Operacional() {
         </Card>
       )}
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-8 lg:grid-cols-2">
         {/* Simulador de Funil */}
         <Card>
           <CardHeader>
@@ -210,12 +210,12 @@ export default function Operacional() {
             </CardTitle>
             <CardDescription>Ajuste os valores para simular diferentes cenários</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-8">
             {/* Investimento */}
             <div className="space-y-2">
               <div className="flex justify-between">
                 <Label>Investimento em Mídia</Label>
-                <span className="text-sm font-mono text-red-400">{formatCurrency(simulador.investimento)}</span>
+                <span className="text-sm font-mono text-[var(--md3-error)]">{formatCurrency(simulador.investimento)}</span>
               </div>
               <Slider
                 value={[simulador.investimento]}
