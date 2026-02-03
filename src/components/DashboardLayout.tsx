@@ -380,25 +380,37 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         {/* Logo Header */}
         <div className={cn(
           "flex items-center border-b border-sidebar-border/50 shrink-0",
-          collapsed ? "h-16 justify-center px-2" : "h-[72px] px-4 gap-3"
+          collapsed ? "h-16 justify-center px-2" : "h-[72px] px-4 justify-between"
         )}>
-          <img
-            src="/lirica-logo.png"
-            alt="Lírica"
-            className={cn(
-              "rounded-2xl shrink-0",
-              collapsed ? "h-8 w-8" : "h-11 w-11"
+          <div className={cn("flex items-center", collapsed ? "" : "gap-3")}>
+            <img
+              src="/lirica-logo.png"
+              alt="Lírica"
+              className={cn(
+                "rounded-2xl shrink-0",
+                collapsed ? "h-8 w-8" : "h-11 w-11"
+              )}
+            />
+            {!collapsed && (
+              <div className="flex flex-col min-w-0">
+                <span className="text-base font-semibold text-sidebar-foreground truncate" style={{ fontFamily: 'var(--font-display)' }}>
+                  Lírica
+                </span>
+                <span className="text-[10px] text-muted-foreground leading-tight truncate">
+                  O Renascimento da Comunicação
+                </span>
+              </div>
             )}
-          />
+          </div>
           {!collapsed && (
-            <div className="flex flex-col min-w-0">
-              <span className="text-base font-semibold text-sidebar-foreground truncate" style={{ fontFamily: 'var(--font-display)' }}>
-                Lírica
-              </span>
-              <span className="text-[10px] text-muted-foreground leading-tight truncate">
-                O Renascimento da Comunicação
-              </span>
-            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="shrink-0"
+            >
+              {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+            </Button>
           )}
         </div>
 
@@ -407,17 +419,19 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <NavContent collapsed={collapsed} />
         </ScrollArea>
 
-        {/* Theme Toggle & Collapse Button */}
+        {/* Collapse Button */}
         <Separator />
         <div className="p-2 flex items-center gap-1">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="flex-1 justify-center"
-            onClick={toggleTheme}
-          >
-            {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-          </Button>
+          {collapsed && (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="flex-1 justify-center"
+              onClick={toggleTheme}
+            >
+              {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+            </Button>
+          )}
           <Button
             variant="ghost"
             size="sm"
