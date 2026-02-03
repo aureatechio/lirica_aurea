@@ -48,11 +48,7 @@
 }
 
 :root {
-  --radius: 0.5rem;
-  /* MGS Brand Colors */
-  --mgs-red: oklch(0.55 0.22 25);
-  --mgs-orange: oklch(0.65 0.2 45);
-  --mgs-dark: oklch(0.15 0.01 260);
+  --radius: 0.625rem;
 
   /* Light theme - Material Design 3 Clean */
   --primary: var(--md3-primary);
@@ -78,7 +74,7 @@
   --chart-2: var(--md3-secondary);
   --chart-3: var(--md3-tertiary);
   --chart-4: var(--md3-success);
-  --chart-5: oklch(0.55 0.1 280);
+  --chart-5: var(--md3-purple);
   --sidebar: var(--md3-surface-container-lowest);
   --sidebar-foreground: var(--md3-on-surface);
   --sidebar-primary: var(--md3-primary);
@@ -114,7 +110,7 @@
   --chart-2: var(--md3-secondary);
   --chart-3: var(--md3-tertiary);
   --chart-4: var(--md3-success);
-  --chart-5: oklch(0.55 0.1 280);
+  --chart-5: var(--md3-purple);
   --sidebar: var(--md3-surface-container-low);
   --sidebar-foreground: var(--md3-on-surface);
   --sidebar-primary: var(--md3-primary);

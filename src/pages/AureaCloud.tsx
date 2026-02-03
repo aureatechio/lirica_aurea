@@ -205,11 +205,19 @@ function FunnelStep({
 }
 
 export default function AureaCloud() {
-  const [viewType, setViewType] = useState<ViewType>("comparativo");
+  const [viewType, setViewType] = useState<ViewType>("consolidado");
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
 
+  // Google Blue color palette override for this page
+  const googleBlueTheme = {
+    '--md3-primary': 'oklch(0.58 0.17 255)',           // Google Blue #4285F4
+    '--md3-on-primary': 'oklch(1 0 0)',                 // White
+    '--md3-primary-container': 'oklch(0.90 0.08 255)', // Light blue
+    '--md3-on-primary-container': 'oklch(0.25 0.12 255)', // Dark blue
+  } as React.CSSProperties;
+
   return (
-    <div className="container mx-auto space-y-8 py-8">
+    <div className="container mx-auto space-y-8 py-8" style={googleBlueTheme}>
       {/* Page Header with View Selector */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="space-y-2">
