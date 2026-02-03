@@ -1,0 +1,94 @@
+@layer base {
+  :root {
+    /* MD3 Color System - Light Theme */
+    --md3-primary: oklch(0.55 0.22 25);           /* MGS Red adapted */
+    --md3-on-primary: oklch(1 0 0);               /* White text */
+    --md3-primary-container: oklch(0.90 0.15 25); /* Lighter red */
+    --md3-on-primary-container: oklch(0.25 0.15 25);
+
+    --md3-secondary: oklch(0.65 0.2 45);          /* MGS Orange adapted */
+    --md3-on-secondary: oklch(0.98 0 0);
+    --md3-secondary-container: oklch(0.92 0.12 45);
+    --md3-on-secondary-container: oklch(0.28 0.12 45);
+
+    --md3-tertiary: oklch(0.60 0.18 260);         /* Blue accent */
+    --md3-on-tertiary: oklch(1 0 0);
+    --md3-tertiary-container: oklch(0.90 0.10 260);
+    --md3-on-tertiary-container: oklch(0.25 0.12 260);
+
+    --md3-error: oklch(0.55 0.25 30);
+    --md3-on-error: oklch(1 0 0);
+    --md3-error-container: oklch(0.92 0.15 30);
+    --md3-on-error-container: oklch(0.30 0.18 30);
+
+    --md3-surface: oklch(0.98 0.005 260);         /* Near white */
+    --md3-on-surface: oklch(0.15 0.01 260);
+    --md3-surface-variant: oklch(0.94 0.008 260);
+    --md3-on-surface-variant: oklch(0.35 0.01 260);
+
+    --md3-outline: oklch(0.60 0.01 260);
+    --md3-outline-variant: oklch(0.80 0.005 260);
+
+    --md3-background: oklch(0.98 0.005 260);
+    --md3-on-background: oklch(0.15 0.01 260);
+
+    /* Elevation/Shadow */
+    --md3-shadow: oklch(0 0 0);
+
+    /* State layers (opacity applied in components) */
+    --md3-state-hover-opacity: 0.08;
+    --md3-state-focus-opacity: 0.12;
+    --md3-state-pressed-opacity: 0.12;
+    --md3-state-dragged-opacity: 0.16;
+  }
+
+  .dark {
+    /* MD3 Color System - Dark Theme */
+    --md3-primary: oklch(0.75 0.20 25);           /* Lighter red for dark */
+    --md3-on-primary: oklch(0.20 0.15 25);
+    --md3-primary-container: oklch(0.35 0.18 25);
+    --md3-on-primary-container: oklch(0.90 0.15 25);
+
+    --md3-secondary: oklch(0.75 0.18 45);         /* Lighter orange */
+    --md3-on-secondary: oklch(0.25 0.12 45);
+    --md3-secondary-container: oklch(0.40 0.15 45);
+    --md3-on-secondary-container: oklch(0.92 0.12 45);
+
+    --md3-tertiary: oklch(0.75 0.15 260);
+    --md3-on-tertiary: oklch(0.22 0.10 260);
+    --md3-tertiary-container: oklch(0.35 0.12 260);
+    --md3-on-tertiary-container: oklch(0.90 0.10 260);
+
+    --md3-error: oklch(0.75 0.22 30);
+    --md3-on-error: oklch(0.25 0.18 30);
+    --md3-error-container: oklch(0.35 0.20 30);
+    --md3-on-error-container: oklch(0.92 0.15 30);
+
+    /* Surface hierarchy - MD3 Clean */
+    --md3-surface: oklch(0.14 0.01 260);
+    --md3-on-surface: oklch(0.92 0.01 260);
+    --md3-surface-variant: oklch(0.22 0.01 260);
+    --md3-on-surface-variant: oklch(0.75 0.01 260);
+
+    /* Surface containers for elevation hierarchy */
+    --md3-surface-container-lowest: oklch(0.08 0.01 260);
+    --md3-surface-container-low: oklch(0.12 0.01 260);
+    --md3-surface-container: oklch(0.16 0.01 260);
+    --md3-surface-container-high: oklch(0.20 0.01 260);
+    --md3-surface-container-highest: oklch(0.24 0.01 260);
+
+    --md3-outline: oklch(0.50 0.01 260);
+    --md3-outline-variant: oklch(0.32 0.01 260);
+
+    --md3-background: oklch(0.10 0.01 260);
+    --md3-on-background: oklch(0.92 0.01 260);
+
+    --md3-shadow: oklch(0 0 0);
+
+    /* Success color for positive indicators */
+    --md3-success: oklch(0.70 0.18 145);
+    --md3-on-success: oklch(0.20 0.10 145);
+    --md3-success-container: oklch(0.30 0.12 145);
+    --md3-on-success-container: oklch(0.90 0.12 145);
+  }
+}
